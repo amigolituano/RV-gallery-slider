@@ -110,7 +110,26 @@ transition: "fade"
 
 "fade", "slide" and false available
 
-## Transition time
+### Transition time
 ```
 transitionTime: 500
+```
+
+# All options and default values in one place
+
+```
+nav: ["<span> < </span>", "<span> > </span>"],
+close: "<span>X</span>",
+showNav: true,
+showNavIfOneItem: false,
+aspectRatio: "auto",
+showDots: false,
+showDotsIfOneItem: false,
+arrows: false,
+fullScreen: true,
+loop: true,
+autoplay: false,
+autoplayDelay: 2000,
+transition: "fade",
+transitionTime: 500,
 ```
