@@ -80,8 +80,8 @@ class Gallery {
     this.yDown = null;
 
     this.gallery.on('touchstart', function(e) {
-        t.xDown = e.touches[0].clientX;
-        t.yDown = e.touches[0].clientY;
+        t.xDown = e.originalEvent.touches[0].clientX;
+        t.yDown = e.originalEvent.touches[0].clientY;
     });
 
     this.gallery.on('touchmove', function(e) {
@@ -248,7 +248,7 @@ class Gallery {
 
   renderGallery() {
 
-      this.gallery.find('.gallery-item').wrap('<div class="g_s-img"></div>');
+      this.gallery.find('img').wrap('<div class="g_s-img"></div>');
       this.gallery.find('.g_s-img').wrapAll('<div class="g_nav" />');
       this.gallery.children().wrapAll('<div class="g_nav-cont" />');
       jQuery(`<div class="arrow-div prev">
@@ -309,8 +309,8 @@ class Gallery {
             return;
         }
 
-        var xUp = e.touches[0].clientX;
-        var yUp = e.touches[0].clientY;
+        var xUp = e.originalEvent.touches[0].clientX;
+        var yUp = e.originalEvent.touches[0].clientY;
 
         this.xDiff = this.xDown - xUp;
         this.yDiff = this.yDown - yUp;
