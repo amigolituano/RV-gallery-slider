@@ -24,10 +24,13 @@ class Gallery {
 
     this.renderGallery();
 
+    jQuery('.g_s-img img').eq(0).on("load", function () {
+        t.calcGalleryHeight();
+    });
+
     jQuery(window).on("load", function () {
         t.countMoveRight();
-        t.calcGalleryHeight();
-	});
+    });
 
     jQuery(window).on('resize', function () {
 		t.countMoveRight();
@@ -144,31 +147,31 @@ class Gallery {
       t.gallery.find(".g_s-img").eq(t.agi).addClass("agi");
       if (this.transition == "fade" ) {
           if (t.gallery.find(".g_m-img").attr('src') !== "#") {
-              t.gallery.find(".g_img-cont .g_m-img").clone().appendTo(t.gallery.find(".g_img-cont .g_m-img").parent()).css({position: "absolute", height: "100%", width:"100%"}).addClass('cloned');
-              t.gallery.find(".g_f-s .g_m-img").clone().appendTo(t.gallery.find(".g_f-s .g_m-img").parent()).css({position: "absolute"}).addClass('cloned');
+              t.gallery.find(".g_img-cont .g_m-img").not('.cloned').clone().appendTo(t.gallery.find(".g_img-cont .g_m-img").parent()).css({position: "absolute", height: "100%", width:"100%"}).addClass('cloned');
+              t.gallery.find(".g_f-s .g_m-img").not('.cloned').clone().appendTo(t.gallery.find(".g_f-s .g_m-img").parent()).css({position: "absolute"}).addClass('cloned');
           }
 
           t.gallery.find(".g_m-img").not('.cloned').attr('src', t.bigImageSrc).hide().fadeIn(t.transitionTime/2);
 
           t.gallery.find(".g_m-img.cloned").fadeOut(t.transitionTime, function() {
-              jQuery(this.remove());
+              jQuery(this).remove();
           });
 
       } else if (this.transition == "slide") {
           if (!t.slideDirection) {
             t.gallery.find(".g_m-img").not('.cloned').attr('src', t.bigImageSrc);
           } else {
-              t.gallery.find(".g_img-cont .g_m-img").clone().appendTo(t.gallery.find(".g_img-cont .g_m-img").parent()).css({position: "absolute", height: "100%", width:"100%"}).addClass('cloned');
-              t.gallery.find(".g_f-s .g_m-img").clone().appendTo(t.gallery.find(".g_f-s .g_m-img").parent()).css({position: "absolute"}).addClass('cloned');
+              t.gallery.find(".g_img-cont .g_m-img").not('.cloned').clone().appendTo(t.gallery.find(".g_img-cont .g_m-img").parent()).css({position: "absolute", height: "100%", width:"100%"}).addClass('cloned');
+              t.gallery.find(".g_f-s .g_m-img").not('.cloned').clone().appendTo(t.gallery.find(".g_f-s .g_m-img").parent()).css({position: "absolute"}).addClass('cloned');
               if (this.slideDirection === "left") {
                    t.gallery.find(".g_m-img").not('.cloned').css({left: "100%"}).attr('src', t.bigImageSrc);
                    t.gallery.find(".g_m-img").not('.cloned').animate({left: "0"}, t.transitionTime);
-                   t.gallery.find(".g_m-img.cloned").animate({left: "-100%"}, t.transitionTime, function() {jQuery(this).remove()});
+                   t.gallery.find(".g_m-img.cloned").animate({left: "-100%"}, t.transitionTime, function() {jQuery(this).remove();});
               } else {
                     t.gallery.find(".g_m-img").not('.cloned').css({left: "-100%"}).attr('src', t.bigImageSrc);
                     t.gallery.find(".g_m-img").not('.cloned').css({left: "-100%"}).attr('src', t.bigImageSrc);
                     t.gallery.find(".g_m-img").not('.cloned').animate({left: "0"}, t.transitionTime);
-                    t.gallery.find(".g_m-img.cloned").animate({left: "100%"}, t.transitionTime, function() {jQuery(this).remove()});
+                    t.gallery.find(".g_m-img.cloned").animate({left: "100%"}, t.transitionTime, function() {jQuery(this).remove();});
               }
           }
 
@@ -315,7 +318,7 @@ class Gallery {
         this.xDiff = this.xDown - xUp;
         this.yDiff = this.yDown - yUp;
 
-        if ( Math.abs( this.xDiff ) > Math.abs( this.yDiff ) ) { 
+        if ( Math.abs( this.xDiff ) > Math.abs( this.yDiff ) ) {
             if ( this.xDiff > 0 ) {
                 this.changeImg('prev');
             } else {
