@@ -1,0 +1,29 @@
+{
+  "name": "rv-gallery-slider",
+  "version": "1.0.0",
+  "description": "Gallery-slider",
+  "main": "RV-gallery.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amigolituano/RV-gallery-slider.git"
+  },
+  "keywords": [
+    "gallery",
+    "slider"
+  ],
+  "author": "Valdas Ruzgys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amigolituano/RV-gallery-slider/issues"
+  },
+  "homepage": "https://github.com/amigolituano/RV-gallery-slider#readme",
+  "devDependencies": {
+    "path": "^0.12.7",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.4"
+  }
+}

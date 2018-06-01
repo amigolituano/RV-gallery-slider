@@ -24,7 +24,7 @@ class Gallery {
 
     this.renderGallery();
 
-    jQuery('.g_s-img img').eq(0).on("load", function () {
+    jQuery('.g_s-img img, .g_m-img').eq(0).on("load", function () {
         t.calcGalleryHeight();
     });
 
